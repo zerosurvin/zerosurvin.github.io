@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZeroSurVin, le carnet de labo de Stanley Yapo</title>
+<meta name="description" content="Une expérience de marketing menée en public : intéresser au vin ceux qui n'en ont pas les codes. La thèse, la méthode, les chiffres et ce qu'ils m'apprennent.">
+<link rel="canonical" href="https://zerosurvin.fr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zerosurvin.fr/">
+<meta property="og:title" content="ZeroSurVin, le carnet de labo">
+<meta property="og:description" content="Je teste en public comment intéresser au vin ceux qui n'en ont pas les codes. La thèse, la méthode, les chiffres.">
+<meta property="og:image" content="https://zerosurvin.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF7F1">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23734D36'/%3E%3Ctext x='32' y='43' font-family='Arial Narrow,Arial,sans-serif' font-weight='700' font-size='28' text-anchor='middle' fill='%23FAF7F1'%3E0/v%3C/text%3E%3C/svg%3E">
+<style>
+@font-face{font-family:'League Gothic';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/league-gothic-400.woff2) format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/poppins-400.woff2) format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/poppins-500.woff2) format('woff2');}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/poppins-600.woff2) format('woff2');}
+:root{
+  --creme:#FAF7F1; --encre:#000; --brun:#734D36; --sable:#EFE6D8;
+  --taupe:#6B5D52; --barre:#9A8A7B; --filet:#DDD2C3;
+  --display:'League Gothic','Arial Narrow',Impact,sans-serif;
+  --texte:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--encre);font:400 17px/1.65 var(--texte)}
+a{color:var(--brun);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+a:hover{text-decoration-thickness:2.5px}
+a:focus-visible{outline:2px solid var(--brun);outline-offset:3px;border-radius:2px}
+.page{max-width:1040px;margin:0 auto;padding:0 24px}
+.prose{max-width:680px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:.005em}
+
+/* En-tête */
+.entete{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:28px 0 0;flex-wrap:wrap}
+.marque{font-family:var(--display);font-size:34px;line-height:1;color:var(--encre);text-decoration:none}
+.marque span{display:block;font-family:var(--texte);font-size:14px;color:var(--taupe);margin-top:6px;letter-spacing:0}
+.entete a.ecrire{font-weight:600;font-size:15px}
+
+/* Ouverture */
+.ouverture{padding:72px 0 0}
+.ouverture h1{font-size:clamp(3rem,8.4vw,6.9rem);line-height:.94;max-width:19ch}
+.ouverture .chapeau{font-weight:500;font-size:clamp(1.12rem,2.2vw,1.35rem);line-height:1.5;max-width:34em;margin:36px 0 0}
+.ouverture .signature{color:var(--taupe);font-size:15px;margin:22px 0 0;max-width:38em}
+.liens{display:flex;flex-wrap:wrap;gap:12px 28px;margin:22px 0 0;font-weight:600;font-size:16px}
+
+/* Sections */
+section{padding-top:104px}
+section h2{font-size:clamp(2.3rem,4.6vw,3rem);line-height:1;margin-bottom:22px}
+.note{color:var(--taupe);font-size:14px;line-height:1.55}
+
+/* Le face-à-face */
+.face{display:grid;grid-template-columns:1fr 1fr;background:var(--sable);margin:30px 0 14px}
+.face > div{padding:28px 30px 30px}
+.face .fiche{border-left:3px solid var(--brun)}
+.face h3{font-family:var(--texte);font-weight:600;font-size:14px;color:var(--taupe);margin-bottom:12px;letter-spacing:0}
+.face .dit{font-size:19px;line-height:1.55;margin:0}
+.face .officiel{font-family:var(--display);font-size:31px;line-height:1.08;margin:0}
+.piliers{margin-top:30px}
+.piliers strong{font-weight:600}
+
+/* Suites ordonnées */
+ol.suite{list-style:none;margin:28px 0 0;padding:0;counter-reset:etape}
+ol.suite li{counter-increment:etape;display:grid;grid-template-columns:56px 1fr;gap:4px 14px;margin:0 0 22px}
+ol.suite li::before{content:counter(etape);font-family:var(--display);font-size:44px;line-height:.9;color:var(--brun)}
+ol.suite li strong{font-weight:600}
+
+/* Le point zéro */
+.registre{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 36px;margin:34px 0 0;padding:0}
+.registre div{margin:0}
+.registre dt{font-family:var(--display);font-size:60px;line-height:.95;color:var(--brun)}
+.registre dd{margin:6px 0 0;font-size:15px;line-height:1.45;max-width:22ch}
+figure.barres{margin:62px 0 0;max-width:760px}
+figure.barres h3{font-family:var(--texte);font-weight:600;font-size:17px;margin-bottom:16px}
+.barres table{width:100%;border-collapse:separate;border-spacing:0 10px}
+.barres th{font-weight:400;font-size:15px;text-align:left;width:250px;padding:0 16px 0 0;vertical-align:middle;line-height:1.3}
+.barres td{vertical-align:middle}
+.barres .piste{display:flex;align-items:center;gap:10px}
+.barres .barre{height:16px;background:var(--barre);border-radius:0 4px 4px 0;min-width:3px}
+.barres .valeur{font-size:15px;font-weight:600;white-space:nowrap}
+.barres tr.fort th{font-weight:600}
+.barres tr.fort .barre{background:var(--brun)}
+figure.barres figcaption{font-size:16px;margin-top:10px;max-width:640px}
+
+/* Trois vidéos */
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin:34px 0 0}
+.videos article{border-top:3px solid var(--brun);padding-top:18px}
+.videos h3{font-size:30px;line-height:1.02}
+.videos .chiffre{font-weight:600;font-size:15px;margin:10px 0 10px}
+.videos p{font-size:16px;line-height:1.6}
+.videos a{font-weight:600;font-size:15px}
+
+/* Leçons */
+ul.lecons{margin:26px 0 0;padding-left:1.1em}
+ul.lecons li{margin:0 0 14px;padding-left:4px}
+ul.lecons li::marker{color:var(--brun)}
+ul.lecons strong{font-weight:600}
+
+/* Pied de page */
+footer{margin-top:112px;border-top:1px solid var(--filet);padding:30px 0 56px;color:var(--taupe);font-size:14px;line-height:1.6}
+footer p{margin:0 0 .8em;max-width:62em}
+footer .sante{color:var(--encre);font-weight:500}
+
+@media (max-width:820px){
+  .face{grid-template-columns:1fr}
+  .face .fiche{border-left:0;border-top:3px solid var(--brun)}
+  .registre{grid-template-columns:repeat(2,1fr)}
+  .videos{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .page{padding:0 18px}
+  .ouverture{padding-top:48px}
+  section{padding-top:76px}
+  .registre dt{font-size:46px}
+  .barres th{width:42%}
+  .face > div{padding:22px 20px 24px}
+  .face .officiel{font-size:27px}
+  ol.suite li{grid-template-columns:40px 1fr}
+  ol.suite li::before{font-size:36px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="entete">
+  <a class="marque" href="/">ZeroSurVin<span>Le carnet de labo de Stanley Yapo</span></a>
+  <a class="ecrire" href="mailto:yapo.stanley@gmail.com">Écrire à Stanley</a>
+</header>
+
+<main>
+<div class="ouverture">
+  <h1>Ceux qui débattent pendant des heures d’un match, d’un moteur ou d’un morceau sont déjà des dégustateurs.</h1>
+  <p class="chapeau">Personne ne leur a jamais ouvert la porte du vin. Depuis juillet 2026, je teste en public comment le faire, et je publie les chiffres, y compris quand ils me donnent tort.</p>
+  <p class="signature">Stanley Yapo, à Bordeaux. Je cherche à rejoindre une équipe marketing ou communication de la filière bordelaise.</p>
+  <p class="liens"><a href="mailto:yapo.stanley@gmail.com">yapo.stanley@gmail.com</a><a href="https://www.linkedin.com/in/stanley-yapo">Mon profil LinkedIn</a></p>
+</div>
+
+<section aria-labelledby="t-format">
+  <div class="prose">
+    <h2 id="t-format">Mon ressenti d’abord, la fiche ensuite</h2>
+    <p>ZeroSurVin est une série TikTok. Je décris un vin avec mes propres mots, sans en avoir les codes, puis je confronte mon ressenti à la fiche officielle. Au Jour 4, ça donnait ceci.</p>
+  </div>
+  <div class="face">
+    <div class="ressenti">
+      <h3>Ce que j’ai dit</h3>
+      <p class="dit">« Ça sent bon […] mais je pourrais toujours pas te dire ce que ça sent. […] Cette odeur de moisi, mais de bon moisi. Tu vas chercher… voilà, tu crapahutes. »</p>
+    </div>
+    <div class="fiche">
+      <h3>Ce que dit la fiche</h3>
+      <p class="officiel">« Poivre noir, fruits noirs, épices. Bouche ample, pleine et racée, avec des tanins structurés et arrondis. »</p>
+    </div>
+  </div>
+  <p class="note">Jour 4, publié le 4 août 2026. Extraits des sous-titres de la vidéo.</p>
+  <div class="prose piliers">
+    <p>La série tient sur trois piliers. <strong>Le parcours :</strong> une bouteille, un ressenti, la fiche, une note. <strong>Les passerelles :</strong> des vidéos où le vin est l’invité d’un sujet qui a déjà son public. <strong>Le lexique :</strong> des mots à moi, plutôt que ceux de l’école.</p>
+    <p>Et une question avant chaque tournage : quelqu’un que le vin laisse indifférent cliquerait-il quand même ?</p>
+  </div>
+</section>
+
+<section aria-labelledby="t-methode">
+  <div class="prose">
+    <h2 id="t-methode">Un carnet de labo, pas un compte de dégustation</h2>
+    <p>Chaque vidéo sert à tester une idée. LinkedIn sert à en rendre compte.</p>
+    <ol class="suite">
+      <li><div><strong>Une hypothèse.</strong> Par exemple : une vidéo où le vin est l’invité d’un sujet qui a déjà son public sort davantage de la bulle des amateurs.</div></li>
+      <li><div><strong>Un test sur TikTok,</strong> un seul paramètre à la fois.</div></li>
+      <li><div><strong>Les chiffres,</strong> relevés à 2 et à 7 jours, et les commentaires, classés un par un.</div></li>
+      <li><div><strong>L’enseignement,</strong> publié sur LinkedIn, même quand il me donne tort.</div></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="t-mesure">
+  <div class="prose">
+    <h2 id="t-mesure">Mesurer l’intérêt, jamais l’achat</h2>
+    <p>La loi Évin encadre la communication sur l’alcool. Je mesure donc l’attention et la curiosité de ceux qui n’ont pas les codes, jamais ce qu’ils boivent ou achètent. Trois niveaux :</p>
+    <ol class="suite">
+      <li><div><strong>La portée.</strong> Combien de gens voient la vidéo, et combien viennent du fil « Pour toi », c’est-à-dire de gens qui ne me suivent pas.</div></li>
+      <li><div><strong>Qui est touché.</strong> Chaque commentaire est classé, du non-initié au connaisseur. L’indicateur : la part des non-initiés, des curieux et des débutants.</div></li>
+      <li><div><strong>L’effet vitrine.</strong> Les conversations ouvertes avec des professionnels de la filière.</div></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="t-zero">
+  <div class="prose">
+    <h2 id="t-zero">Le point zéro</h2>
+    <p>Dix épisodes de parcours, publiés du 19 juillet au 21 septembre 2026. Aucune passerelle encore : c’est la ligne de départ.</p>
+  </div>
+  <dl class="registre">
+    <div><dt>41 824</dt><dd>vues au total</dd></div>
+    <div><dt>13 205</dt><dd>vues pour l’épisode le plus vu (médiane : 3 146)</dd></div>
+    <div><dt>631</dt><dd>abonnés au 7 octobre</dd></div>
+    <div><dt>22 s</dt><dd>de visionnage moyen, pour des vidéos de 2 min 17 en moyenne</dd></div>
+    <div><dt>85,9 %</dt><dd>des spectateurs ont entre 18 et 34 ans</dd></div>
+    <div><dt>115</dt><dd>commentaires classés, écrits par 77 personnes</dd></div>
+  </dl>
+  <figure class="barres">
+    <h3>Qui commente les vidéos</h3>
+    <table>
+      <caption class="note" style="caption-side:bottom;text-align:left;padding-top:4px">Part des 115 commentaires extérieurs, relevés le 8 octobre 2026.</caption>
+      <tbody>
+        <tr><th scope="row">Amateurs et connaisseurs</th><td><div class="piste"><div class="barre" style="width:75.7%"></div><span class="valeur">75,7 %</span></div></td></tr>
+        <tr><th scope="row">Encouragements, sans indice de profil</th><td><div class="piste"><div class="barre" style="width:14.8%"></div><span class="valeur">14,8 %</span></div></td></tr>
+        <tr class="fort"><th scope="row">Novices et curieux</th><td><div class="piste"><div class="barre" style="width:3.5%"></div><span class="valeur">3,5 %</span></div></td></tr>
+        <tr><th scope="row">Critiques</th><td><div class="piste"><div class="barre" style="width:2.6%"></div><span class="valeur">2,6 %</span></div></td></tr>
+        <tr><th scope="row">Ponts culturels</th><td><div class="piste"><div class="barre" style="width:1.7%"></div><span class="valeur">1,7 %</span></div></td></tr>
+        <tr><th scope="row">Amis tagués</th><td><div class="piste"><div class="barre" style="width:1.7%"></div><span class="valeur">1,7 %</span></div></td></tr>
+      </tbody>
+    </table>
+    <figcaption>La part qui compte est la plus petite : 3,5 %. Une série pensée pour les non-initiés est, pour l’instant, regardée par des initiés.</figcaption>
+  </figure>
+  <p class="note prose" style="margin-top:28px">Vues et durées : Metricool, 8 octobre 2026. Âge : TikTok Studio, spectateurs des 60 derniers jours, 12 octobre 2026. Commentaires : classés un par un, sans conserver aucun pseudonyme.</p>
+</section>
+
+<section aria-labelledby="t-videos">
+  <div class="prose">
+    <h2 id="t-videos">Trois vidéos, trois leçons</h2>
+  </div>
+  <div class="videos">
+    <article>
+      <h3>Jour 4, un côtes-du-rhône 2023</h3>
+      <p class="chiffre">13 205 vues, la plus vue</p>
+      <p>Une bouteille connue fait cliquer : 124 nouveaux abonnés sont venus de cette vidéo. Mais on la regarde 20 secondes en moyenne, et la confrontation à la fiche commence à 1 min 54.</p>
+      <a href="https://www.tiktok.com/@zerosurvin/video/7670209719293791520">Voir la vidéo sur TikTok</a>
+    </article>
+    <article>
+      <h3>Jour 7, un bouzeron 2023</h3>
+      <p class="chiffre">8 746 vues, la plus partagée</p>
+      <p>4,9 partages pour 1 000 vues, et 97,8 % des vues venues du fil « Pour toi ». C’est la vidéo la plus servie à des gens qui ne me suivent pas.</p>
+      <a href="https://www.tiktok.com/@zerosurvin/video/7688058645052968224">Voir la vidéo sur TikTok</a>
+    </article>
+    <article>
+      <h3>« Help ! », un sauternes de 1987</h3>
+      <p class="chiffre">35 secondes, la plus regardée jusqu’au bout</p>
+      <p>10,5 % des spectateurs vont jusqu’au bout, dix fois plus qu’au Jour 4. Une vraie question, posée court : les connaisseurs ont répondu par des conseils de garde et de service.</p>
+      <a href="https://www.tiktok.com/@zerosurvin/video/7673854597290544416">Voir la vidéo sur TikTok</a>
+    </article>
+  </div>
+</section>
+
+<section aria-labelledby="t-lecons">
+  <div class="prose">
+    <h2 id="t-lecons">Ce que les dix premiers épisodes m’ont appris</h2>
+    <ul class="lecons">
+      <li><strong>La bulle.</strong> Trois commentaires sur quatre viennent d’amateurs et de connaisseurs. Les algorithmes servent le contenu vin à ceux qui en regardent déjà.</li>
+      <li><strong>La bonne génération, pas encore le bon public.</strong> 85,9 % des spectateurs ont entre 18 et 34 ans, mais 3,5 % seulement des commentaires viennent de non-initiés ou de curieux.</li>
+      <li><strong>L’école gratuite.</strong> Les connaisseurs ne se moquent pas, ils transmettent : 28 conseils de technique et 14 recommandations.</li>
+      <li><strong>La bouteille avant le goût.</strong> Le premier code qu’on m’a corrigé, c’est le choix de la bouteille, dans 24 commentaires.</li>
+      <li><strong>La portée précède l’acquisition.</strong> Le seul non-initié déclaré est arrivé par la vidéo la plus vue.</li>
+      <li><strong>Le cœur du format arrive trop tard.</strong> La confrontation à la fiche commence quand la plupart des spectateurs sont déjà partis.</li>
+    </ul>
+  </div>
+</section>
+
+<section aria-labelledby="t-suite">
+  <div class="prose">
+    <h2 id="t-suite">La suite</h2>
+    <p>À partir de novembre, les premières passerelles : le vin devient l’invité d’un sujet qui a déjà son public. Trois vidéos par semaine sur TikTok, le carnet de labo deux fois par semaine sur LinkedIn, et cette page mise à jour chaque mois.</p>
+    <p>Vous travaillez dans le vin et le sujet vous parle ? Écrivez-moi.</p>
+    <p class="liens"><a href="mailto:yapo.stanley@gmail.com">yapo.stanley@gmail.com</a><a href="https://www.linkedin.com/in/stanley-yapo">Mon profil LinkedIn</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="sante">L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</p>
+  <p>Page mise à jour le 12 octobre 2026.</p>
+  <p>Mentions légales. Site personnel édité par Stanley Yapo, Bordeaux (yapo.stanley@gmail.com). Hébergé par GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Ce site ne dépose aucun cookie et ne contient aucun outil de mesure d’audience.</p>
+</footer>
+
+</div>
+</body>
+</html>
